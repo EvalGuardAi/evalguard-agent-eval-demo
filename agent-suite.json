@@ -1,0 +1,12 @@
+{
+  "model": "echo",
+  "provider": "echo",
+  "prompt": "{{input}}",
+  "scorers": ["general-task-completion"],
+  "scorerOptions": {
+    "general-task-completion": { "successCriteria": ["Booked", "London", "18C"] }
+  },
+  "cases": [
+    { "input": "Booked the cheapest flight BA178 (NYC->London, $420). London weather: 18C, cloudy." }
+  ]
+}

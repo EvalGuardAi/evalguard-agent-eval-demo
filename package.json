@@ -1,0 +1,14 @@
+{
+  "name": "evalguard-agent-eval-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Try EvalGuard's agent / tool-calling evaluation locally — no account, no API key.",
+  "scripts": {
+    "demo": "node agent-eval.mjs",
+    "suite": "npx --yes @evalguard/cli eval:local agent-suite.json"
+  },
+  "dependencies": {
+    "@evalguard/core": "^1.4.0"
+  }
+}
