@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly: catches upstream @evalguard/core / @evalguard/cli regressions
+    # that would break the "try it locally" experience for visitors.
+    - cron: "17 6 * * 1"
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "${{ matrix.node-version }}"
+      - name: Install
+        run: npm install
+      - name: Script demo — agent-eval.mjs (scorers run against published core)
+        run: npm run demo
+      - name: Suite demo — @evalguard/cli eval:local (published CLI, no key)
+        run: npm run suite
